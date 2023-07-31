@@ -1,0 +1,64 @@
+video 1 requirement :
+pada kelas ini, kita akan coba membuat restfull API contact managemet
+fitur-fitur nya sebagai berikut :
+1. user management -> manajemen user (pengguna nya siapa)
+2. contact management -> kontak2 yang dimiliki pengguna/user
+3. address -> jika kontakk memiliki address atau alamat
+
+video 2 user management requirement :
+user data : id,username,password,name
+user api : register user, login user, update user, get user, logout user
+
+video 3 contact management requirement :
+contact data : id,firstname,lastname,email,phone
+contact api : create contact, update contact, get contact, search contact, remove contact
+
+video 4 contact address management requirement :
+contact address data : id,street,city,province,country,postal code
+contact address api : create address, update address, get address, list address, remove address
+
+video 5 membuat project :
+buat folder -> npm init -> package.json type modul -> npm install joi -> npm install express -> 
+npm install --save-dev @types/express -> npm install --save-dev prisma -> npm install winston (untuk logger)
+-> npm install bcrypt -> npm install --save-dev @types/bcrypt (untuk hashing login)
+-> npm install uuid -> npm install --save-dev @types/uuid (untuk menyimpan data login dalam bentuk uuid)
+-> npm install --save-dev jest @types/jest (unit test) -> babel https://babeljs.io/setup#installation
+-> npm install --save-dev supertest @types/supertest (agar mudah test express kita)
+
+video 6 user api spec :
+di kelas ini pakai markdown, idealnya pakai open api
+[folder docs, user.md, contact.md dan address.md]
+
+video 7 setup database :
+buat database -> npx prisma init -> sambung di env -> buat model di schema
+-> npx prisma migrate dev --create-only -> cek tambahkan ENGINE InnoDB -> npx prisma migrate
+1 user bisa punya banyak kontak
+dan 1 kontak bisa punya banyak address
+
+video 8 setup project :
+folder src/application/
+web.js -> untuk express
+database.js -> untuk prisma
+logging.js -> untuk logging
+
+src/service -> untuk logic aplikasi
+src/controller -> untuk handle API
+src/validation -> untuk validasi
+src/route -> untuk route express
+src/error -> untuk mengambil class error js
+src/middleware -> untuk translate error
+main.js -> untuk menjalankan web (express dari application web)
+test -> untuk unit testing
+
+video 9 urutan pembuatan program :
+1. validation -> membuat validasi request menggunakan joi
+2. function validate -> lakukan validate dari schema yang dikirim (jika ada error throw error)
+3. service -> panggil function validate dan requestnya serta logic aplikasi seperti cek apakah username sudah ada
+4. error -> untuk pemanggilan error di bagian ketiga bila ada error
+5. controller -> lakukan logic di ke 3 dengan mengirimkan req body, lalu kirimkan respon dengan data json sesuai API spec
+6. route public-api -> untuk membuat router agar user bisa lakukan request seperti post dan api spec nya
+7. web -> menyiapkan express dan panggil router yang sudah dibuat di no 6
+8. middleware -> untuk translate error middleware (misal jika error di service seperti ResponseError bagaimana dan yang lainnya)
+9. web -> register lagi di web error no 8 tadi
+10. main -> menjalankan server web dan sejenisnya
+11. test -> unit testing seperti success dan gagalnya data
