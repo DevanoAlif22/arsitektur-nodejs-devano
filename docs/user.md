@@ -81,7 +81,7 @@ Headers :
 Request Body : 
 ```json
 {
-    "name" : "Davano", // optional
+    "name" : "devano", // optional
     "password" : "rahasia" // optional
 }
 ```
